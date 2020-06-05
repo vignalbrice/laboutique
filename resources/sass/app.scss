@@ -1,0 +1,22 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+a:hover {
+    text-decoration: none !important;
+}
+.img {
+    max-height: 100%;
+}
+.title {
+    color: #333;
+}
+.menu-link {
+    color: #333;
+    font-weight: 500;
+}
