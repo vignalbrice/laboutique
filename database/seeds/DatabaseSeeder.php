@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // insertion de l'utilisateur admin pour l'interface admin
         DB::table('users')->insert([
             [
                 'name' => 'admin',
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('admin')
             ],
         ]);
+        // insertion des catégories hommes/femmes
         DB::table('categories')->insert([
             [
                 'title' => 'Homme',
@@ -36,10 +38,13 @@ class DatabaseSeeder extends Seeder
                 'description' => 'La mode pour les femmes'
             ]
         ]);
+        // suppression de tout les fichiers existants dans le répertoire public/images
         Storage::disk('local')->delete(Storage::allFiles());
-
+        // Ajout des produits via faker dans la table product
         factory(App\Product::class, 30)->create()->each(function ($product) {
+            // Ajout du tableau des catégories
             $categories = ['Homme', 'Femme'];
+            // Ajout des images dans storages et insertion des iamges dans le dossier public/images hommes pour la catégorie homme et femmes pour la catégorie femmes
             $femmes = Storage::disk('faker_images')->files('femmes');
             $hommes = Storage::disk('faker_images')->files('hommes');
             $genre = $this->faker->randomElement(['Homme', 'Femme']);
